@@ -14,4 +14,15 @@ export class MoviesComponent implements OnInit {
   ngOnInit() {
   }
 
+  onKey(event: any) {
+    const query = event.target.value;
+    this.searchService.searchMovies(query).subscribe(
+      response => {
+      
+        console.log(response);
+
+      }
+    );
+  }
+
 }

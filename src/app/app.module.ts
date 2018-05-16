@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,8 +25,8 @@ import { SearchService } from './search.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
-    HttpClientJsonpModule,
     NgxPaginationModule,
     MoviesModule,
     TvShowsModule,

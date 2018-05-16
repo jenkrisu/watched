@@ -1,11 +1,38 @@
 <div class="container">
 
   <div class="row">
-    <input type="text" class="form-control" placeholder="Search movies..." (keyup)="onKey($event)">
+    <input [formControl]="query" type="text" class="form-control" placeholder="Search movies...">
   </div>
 
   <div class="row">
-    
+      <pagination-controls 
+        (pageChange)="getPage($event)"
+        id="movies"
+        autoHide="autoHide"
+        directionLinks="directionLinks"
+        previousLabel=""
+        nextLabel="">
+      </pagination-controls>
+    </div>
+
+  <div class="row">
+    <ul>
+
+    <li *ngFor="let result of results | paginate: { id: 'movies', itemsPerPage: 20, currentPage: page, totalItems: total_results }">
+      {{ result.title }}
+    </li>
+
+    </ul>
   </div>
 
+  <div class="row">
+    <pagination-controls 
+      (pageChange)="getPage($event)"
+      id="movies"
+      autoHide="autoHide"
+      directionLinks="directionLinks"
+      previousLabel=""
+      nextLabel="">
+    </pagination-controls>
+  </div>
 </div>

@@ -1,14 +1,5 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs/observable';
-
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/switchMap';
 
 import { SearchService } from '../search.service';
 import { Result } from '../result.interface';
@@ -18,58 +9,57 @@ import { TvShow } from '../tv-shows/tv-show.interface';
 import { IMG_SMALL } from '../api';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  selector: 'app-popular',
+  templateUrl: './popular.component.html',
+  styleUrls: ['./popular.component.scss']
 })
+export class PopularComponent implements OnInit {
 
-export class SearchComponent implements OnInit {
-
-  type: 'movie' | 'tv';
-  searchText = 'Type to search...';
+  type: 'tv' | 'movie';
   img = IMG_SMALL;
 
   total_results = 0;
-  results: Movie[] | TvShow[] = [];
+  results: Movie[] = [];
   page = 1;
   loading = false;
   maxSize = 10;
   itemsPerPage = 20;
 
   error = '';
-  query = new FormControl();
 
   constructor(private router: Router,
     private searchService: SearchService) { }
 
   ngOnInit() {
-
-    if (this.router.url === '/movies/search') {
+    if (this.router.url === '/movies' || this.router.url === '/movies/popular') {
       this.type = 'movie';
-      this.searchText = 'Type to search movies...';
-    } else if (this.router.url === '/tvshows/search') {
+      this.loadResults();
+    } else if (this.router.url === '/tvshows' || this.router.url === '/tvshows/popular') {
       this.type = 'tv';
-      this.searchText = 'Type to search TV shows...';
+      this.loadResults();
     }
+  }
 
-    // Subscribe to search query changes but limit sending requests on every value change
-    this.query.valueChanges
-    .debounceTime(500)
-    .filter(query => query.length > 0)
-    .distinctUntilChanged()
-    .do(() => this.emptyResults())
-    .do(() => this.loading = true)
-    // SwitchMap: "flattening operator", cancels previous inner observable and subscribes to the new one
-    .switchMap(query => this.searchService.search(this.type, query))
+  loadResults() {
+    this.error = '';
+    this.loading = true;
+    this.searchService.popular(this.type)
     .do(() => this.loading = false )
     .subscribe(
       response => {
+        this.loading = false;
         this.setResults(response);
       },
       error => {
+        this.loading = false;
         this.error = error;
       }
     );
+  }
+
+  refresh(event) {
+    event.preventDefault();
+    this.loadResults();
   }
 
   getPage(page: number) {
@@ -78,7 +68,7 @@ export class SearchComponent implements OnInit {
     this.loading = true;
     this.page = page;
     this.searchService
-    .search(this.type, this.query.value, page)
+    .popular(this.type, page)
     .subscribe(
       response => {
         this.loading = false;
@@ -100,14 +90,7 @@ export class SearchComponent implements OnInit {
     this.results = response.body.results;
   }
 
-  emptyResults() {
-      this.error = '';
-      this.total_results = 0;
-      this.results = [];
-  }
-
   getYear(string: string) {
     return string.slice(0, string.indexOf('-'));
   }
-
 }

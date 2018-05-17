@@ -28,6 +28,18 @@ export class SearchService {
       .pipe(catchError(this.handleError));
   }
 
+  popular(type: 'movie' | 'tv', page: number = 1): Observable<HttpResponse<Result>> {
+    const url = api.URL + '/3/' + type + '/popular';
+
+    const params = new HttpParams()
+    .set('api_key', api.KEY)
+    .set('page', page.toString());
+
+    return this.httpClient
+      .get<Result>(url, {params, observe: 'response'})
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     console.log(error);
     return new ErrorObservable('Unfortunately an error occurred. Please try again later.');

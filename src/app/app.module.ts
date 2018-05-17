@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 
 import { SearchService } from './search.service';
 import { SearchComponent } from './search/search.component';
+import { PopularComponent } from './popular/popular.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SearchComponent } from './search/search.component';
     NotFoundComponent,
     LoginComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    PopularComponent
   ],
   imports: [
     BrowserModule,

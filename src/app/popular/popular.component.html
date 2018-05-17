@@ -20,11 +20,15 @@
   <div class="card m-1" style="width: 12rem;" *ngFor="let result of results | paginate: { id: 'resultsControl', itemsPerPage: itemsPerPage, currentPage: page, totalItems: total_results }">
     <div class="card-body">
       <ng-container *ngIf="type === 'movie'">
-        <h5 class="card-title"> {{ result.title }}</h5>
+        <a href="#" [routerLink]="['/movies', result.id]">
+          <h5 class="card-title"> {{ result.title }}</h5>
+        </a>
         <h6 *ngIf="result.release_date" class="card-subtitle mb-2 text-muted">{{ getYear(result.release_date) }}</h6>
       </ng-container>
       <ng-container *ngIf="type === 'tv'">
-        <h5 class="card-title"> {{ result.name }}</h5>
+        <a href="#" [routerLink]="['/tvshows', result.id]">
+          <h5 class="card-title"> {{ result.name }}</h5>
+        </a>
         <h6 *ngIf="result.first_air_date" class="card-subtitle mb-2 text-muted">{{ getYear(result.first_air_date) }}</h6>
       </ng-container>
       <img *ngIf="result.poster_path" src="{{ img + result.poster_path }}">

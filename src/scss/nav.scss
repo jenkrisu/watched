@@ -1,0 +1,19 @@
+@import "~bootstrap/scss/variables";
+
+.nav-bg-active {
+    background-color: $primary;
+    color: #fff;
+    border-radius: $border-radius;
+    
+    &:hover {
+        color: #fff;
+    }
+}
+
+.ngx-pagination > .current {
+    border-radius: $border-radius;
+}
+
+.navbar-light {
+    background-color: #5cb85c;
+}

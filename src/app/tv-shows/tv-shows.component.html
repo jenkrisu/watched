@@ -1,3 +1,24 @@
-<p>
-  TV Shows
-</p>
+<div class="container">
+
+  <div class="row justify-content-center p-2">
+    <div class="col-md-2">
+
+      <ul class="nav flex-md-column flex-row">
+        <li class="nav-item">
+          <a routerLink="popular" routerLinkActive="active" class="nav-link" href="#">Popular</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="search" routerLinkActive="active" class="nav-link" href="#">Search</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="watchlist" routerLinkActive="active" class="nav-link" href="#">Watchlist</a>
+        </li>
+      </ul>
+
+    </div>
+    <div class="col-md-8">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>

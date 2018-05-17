@@ -5,34 +5,33 @@
   </div>
 
   <div class="row">
-      <pagination-controls 
-        (pageChange)="getPage($event)"
-        id="movies"
-        autoHide="autoHide"
-        directionLinks="directionLinks"
-        previousLabel=""
-        nextLabel="">
-      </pagination-controls>
-    </div>
+    <pagination-controls (pageChange)="getPage($event)" id="movies" autoHide="autoHide" directionLinks="directionLinks" previousLabel="" nextLabel="">
+    </pagination-controls>
+  </div>
 
   <div class="row">
+    <div class="lds-ellipsis" [hidden]="!loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+
+  <div class="row">
+
     <ul>
 
-    <li *ngFor="let result of results | paginate: { id: 'movies', itemsPerPage: 20, currentPage: page, totalItems: total_results }">
-      {{ result.title }}
-    </li>
+      <li *ngFor="let result of results | paginate: { id: 'movies', itemsPerPage: 20, currentPage: page, totalItems: total_results }">
+        {{ result.title }}
+      </li>
 
     </ul>
   </div>
 
   <div class="row">
-    <pagination-controls 
-      (pageChange)="getPage($event)"
-      id="movies"
-      autoHide="autoHide"
-      directionLinks="directionLinks"
-      previousLabel=""
-      nextLabel="">
+    <pagination-controls (pageChange)="getPage($event)" id="movies" autoHide="autoHide" directionLinks="directionLinks" previousLabel="" nextLabel="">
     </pagination-controls>
   </div>
 </div>

@@ -12,11 +12,13 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-
-import { SearchService } from './search.service';
 import { SearchComponent } from './search/search.component';
 import { PopularComponent } from './popular/popular.component';
 
+import { SearchService } from './search.service';
+import { AuthService } from './auth.service';
+
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { PopularComponent } from './popular/popular.component';
     TvShowsModule,
     AppRoutingModule
   ],
-  providers: [SearchService],
+  providers: [SearchService, AuthService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

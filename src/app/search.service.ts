@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, retry } from 'rxjs/operators';
 
-
 import * as api from './api';
 import { Result } from './result.interface';
 
@@ -41,7 +40,6 @@ export class SearchService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.log(error);
     return new ErrorObservable('Unfortunately an error occurred. Please try again later.');
   }
 

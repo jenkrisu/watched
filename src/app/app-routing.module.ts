@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes =  [
-  { path: '', pathMatch: 'full', redirectTo: 'movies'},
+  { path: '', component: HomeComponent},
   { path: 'watched', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: NotFoundComponent }

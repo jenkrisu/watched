@@ -2,13 +2,14 @@ export interface TvShowDetails {
     poster_path?: string;
     popularity?: number;
     id?: number;
+    homepage?: string;
     backdrop_path?: string;
     vote_average?: number;
     overview?: string;
     first_air_date?: string;
     last_air_date?: string;
     origin_country?: string[];
-    genres?: { name: string, id: number };
+    genres?: { name: string, id: number }[];
     original_language?: string;
     vote_count?: number;
     name?: string;

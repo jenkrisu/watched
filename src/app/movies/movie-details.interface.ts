@@ -3,7 +3,7 @@ export interface MovieDetails {
     backdrop_path?: string;
     belongs_to_collection?: object;
     budget?: number;
-    genres?: { id: number, name: string};
+    genres?: { id: number, name: string}[];
     homepage?: string;
     id?: number;
     imdb_id?: string;

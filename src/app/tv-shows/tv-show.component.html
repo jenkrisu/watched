@@ -16,7 +16,7 @@
     <div class="card mb-3">
       <img *ngIf="tv.backdrop_path" class="card-img-top" src="{{ bg + tv.backdrop_path }}" alt="Tv backdrop">
       <div class="card-body">
-        <h5 class="card-title">{{ tv.title }} 
+        <h5 class="card-title">{{ tv.name }} 
           <a *ngIf="tv.homepage" href="{{ tv.homepage }}" class="float-right"><i class="fas fa-external-link-alt"></i></a>
         </h5>
         <h6 class="card-title"><strong>Rating:</strong> {{ tv.vote_average }}/10 ({{ tv.vote_count }} votes)</h6>

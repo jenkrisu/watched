@@ -56,7 +56,7 @@ export class TvShowComponent implements OnInit {
 
   addToList(list: string, id: number) {
     console.log(id);
-    this.listService.addToList(list, 'movie', this.userId, id, true).subscribe(
+    this.listService.addToList(list, 'tv', this.userId, id, true).subscribe(
       response => {
       },
       error => {

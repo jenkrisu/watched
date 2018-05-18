@@ -16,10 +16,17 @@
   <div class="card mb-3">
     <img *ngIf="movie.backdrop_path" class="card-img-top" src="{{ bg + movie.backdrop_path }}" alt="Movie backdrop">
     <div class="card-body">
-      <h5 class="card-title">{{ movie.title }} 
+      <h5 class="card-title">{{ movie.title }}
         <a *ngIf="movie.homepage" href="{{ movie.homepage }}" class="float-right"><i class="fas fa-external-link-alt"></i></a>
       </h5>
-      <p class="card-text">{{ movie.overview }}</p>
+      <h6 class="card-title"><strong>Rating:</strong> {{ movie.vote_average }}/10 ({{ movie.vote_count }} votes)</h6>
+      <p class="card-text">
+        <a href="#"><i class="fas fa-heart"></i></a> Add to Favorites
+      </p>
+      <p class="card-text">
+        <a href="#"><i class="fas fa-list-ul"></i></a> Add to Watchlist
+      </p>
+      <p *ngIf="movie.overview" class="card-text">{{ movie.overview }}</p>
       <div class="row">
         <div *ngIf="movie.poster_path" class="col-md-6 mb-2 align-items-center text-center">
           <img class="card-img-top" src="{{ img + movie.poster_path }}" alt="Movie poster">
@@ -28,10 +35,12 @@
         <div class="col">
           <p *ngIf="movie.release_date"><strong>Release date:</strong> {{ movie.release_date }}</p>
           <p *ngIf="movie.runtime"><strong>Runtime:</strong> {{ movie.runtime }} min</p>
-          <p *ngIf="moviegenres && movie.genres.length > 0"><strong>Genres:</strong></p>
-          <ul *ngIf="movie.genres">
-            <li *ngFor="let genre of movie.genres">{{ genre.name }}</li>
-          </ul>
+          <ng-container *ngIf="movie.genres && movie.genres.length > 0">
+            <p><strong>Genres:</strong></p>
+            <ul>
+              <li *ngFor="let genre of movie.genres">{{ genre.name }}</li>
+            </ul>
+          </ng-container>
           <p *ngIf="movie.original_language"><strong>Language:</strong> {{ movie.original_language }}</p>
         </div>
 

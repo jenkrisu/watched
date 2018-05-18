@@ -35,9 +35,6 @@ export class MovieComponent implements OnInit {
           this.error = error;
         });
     });
-
-
-
   }
 
 }

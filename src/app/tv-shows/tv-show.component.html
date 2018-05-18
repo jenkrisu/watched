@@ -1,3 +1,54 @@
-<p>
-  tv-show works!
-</p>
+<div class="row justify-content-center">
+    <div class="lds-ellipsis" [hidden]="!loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  
+  <div *ngIf="error" class="row justify-content-center m-2">
+    <p class="text-danger">{{ error }}</p>
+  </div>
+  
+  <div class="row justify-content-center m-2">
+  
+    <div class="card mb-3">
+      <img *ngIf="tv.backdrop_path" class="card-img-top" src="{{ bg + tv.backdrop_path }}" alt="Tv backdrop">
+      <div class="card-body">
+        <h5 class="card-title">{{ tv.title }} 
+          <a *ngIf="tv.homepage" href="{{ tv.homepage }}" class="float-right"><i class="fas fa-external-link-alt"></i></a>
+        </h5>
+        <h6 class="card-title"><strong>Rating:</strong> {{ tv.vote_average }}/10 ({{ tv.vote_count }} votes)</h6>
+        <p class="card-text">
+          <a href="#"><i class="fas fa-heart"></i></a> Add to Favorites
+        </p>
+        <p class="card-text">
+          <a href="#"><i class="fas fa-list-ul"></i></a> Add to Watchlist
+        </p>
+        <p *ngIf="tv.overview" class="card-text">{{ tv.overview }}</p>
+        <div class="row">
+          <div *ngIf="tv.poster_path" class="col-md-6 mb-2 align-items-center text-center">
+            <img class="card-img-top" src="{{ img + tv.poster_path }}" alt="Tv poster">
+          </div>
+          <div class="col">
+            <p *ngIf="tv.first_air_date"><strong>First aired:</strong> {{ tv.first_air_date }}</p>
+            <p *ngIf="tv.last_air_date"><strong>Last aired:</strong> {{ tv.last_air_date }}</p>
+            <p *ngIf="tv.status"><strong>Status:</strong> {{ tv.status }}</p>
+            <p *ngIf="tv.number_of_seasons"><strong>Seasons: </strong> {{ tv.number_of_seasons }}</p>
+            <p *ngIf="tv.number_of_episodes"><strong>Episodes: </strong> {{ tv.number_of_episodes }}</p>
+            <ng-container *ngIf="tv.genres && tv.genres.length > 0">
+                <p><strong>Genres:</strong></p>
+                <ul>
+                  <li *ngFor="let genre of tv.genres">{{ genre.name }}</li>
+                </ul>
+              </ng-container>
+            <p *ngIf="tv.original_language"><strong>Language:</strong> {{ tv.original_language }}</p>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  

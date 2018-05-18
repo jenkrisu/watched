@@ -6,6 +6,8 @@
   <p class="text-danger">{{ error }}</p>
 </div>
 
+<div *ngIf="noResults">No results found.</div>
+
 <div *ngIf="!error" class="row justify-content-center">
   <pagination-controls (pageChange)="getPage($event)" id="resultsControl" autoHide="true" maxSize="{{maxSize}}" directionLinks="true" previousLabel="" nextLabel="">
   </pagination-controls>

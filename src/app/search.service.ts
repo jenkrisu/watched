@@ -6,6 +6,7 @@ import { catchError, retry } from 'rxjs/operators';
 import * as api from './api';
 import { Result } from './result.interface';
 import { MovieDetails } from './movies/movie-details.interface';
+import { TvShowDetails } from './tv-shows/tv-show-details.interface';
 
 import { HttpClient, HttpParams, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
@@ -53,6 +54,20 @@ export class SearchService {
       .get<MovieDetails>(url, {params, observe: 'response'})
       .pipe(catchError(this.handleError));
   }
+
+  // Get TV show
+    // Get movie
+    tv(id: string): Observable<HttpResponse<TvShowDetails>> {
+      const url = api.URL + '/3/tv/' + id;
+  
+      const params = new HttpParams()
+      .set('api_key', api.KEY);
+  
+      return this.httpClient
+        .get<TvShowDetails>(url, {params, observe: 'response'})
+        .pipe(catchError(this.handleError));
+    }
+  
 
   private handleError(error: HttpErrorResponse) {
     return new ErrorObservable('Unfortunately an error occurred. Please try again later.');

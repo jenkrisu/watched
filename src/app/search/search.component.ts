@@ -37,6 +37,7 @@ export class SearchComponent implements OnInit {
   itemsPerPage = 20;
 
   error = '';
+  noResults = false;
   query = new FormControl();
 
   constructor(private router: Router,
@@ -74,6 +75,7 @@ export class SearchComponent implements OnInit {
 
   getPage(page: number) {
     this.error = '';
+    this.noResults = false;
     this.results = [];
     this.loading = true;
     this.page = page;
@@ -98,10 +100,14 @@ export class SearchComponent implements OnInit {
       this.total_results = 1000 * this.itemsPerPage;
     }
     this.results = response.body.results;
+    if (this.results.length === 0) {
+      this.noResults = true;
+    }
   }
 
   emptyResults() {
       this.error = '';
+      this.noResults = false;
       this.total_results = 0;
       this.results = [];
   }

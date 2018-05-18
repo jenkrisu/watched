@@ -1,3 +1,42 @@
-<p>
-  movie works!
-</p>
+<div class="row justify-content-center">
+  <div class="lds-ellipsis" [hidden]="!loading">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<div *ngIf="error" class="row justify-content-center m-2">
+  <p class="text-danger">{{ error }}</p>
+</div>
+
+<div class="row justify-content-center m-2">
+
+  <div class="card mb-3">
+    <img *ngIf="movie.backdrop_path" class="card-img-top" src="{{ bg + movie.backdrop_path }}" alt="Movie backdrop">
+    <div class="card-body">
+      <h5 class="card-title">{{ movie.title }} 
+        <a *ngIf="movie.homepage" href="{{ movie.homepage }}" class="float-right"><i class="fas fa-external-link-alt"></i></a>
+      </h5>
+      <p class="card-text">{{ movie.overview }}</p>
+      <div class="row">
+        <div *ngIf="movie.poster_path" class="col-md-6 mb-2 align-items-center text-center">
+          <img class="card-img-top" src="{{ img + movie.poster_path }}" alt="Movie poster">
+          <small class="text-muted" *ngIf="movie.tagline">"{{ movie.tagline }}"</small>
+        </div>
+        <div class="col">
+          <p *ngIf="movie.release_date"><strong>Release date:</strong> {{ movie.release_date }}</p>
+          <p *ngIf="movie.runtime"><strong>Runtime:</strong> {{ movie.runtime }} min</p>
+          <p *ngIf="moviegenres && movie.genres.length > 0"><strong>Genres:</strong></p>
+          <ul *ngIf="movie.genres">
+            <li *ngFor="let genre of movie.genres">{{ genre.name }}</li>
+          </ul>
+          <p *ngIf="movie.original_language"><strong>Language:</strong> {{ movie.original_language }}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

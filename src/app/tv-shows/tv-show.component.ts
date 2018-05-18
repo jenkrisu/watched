@@ -28,7 +28,6 @@ export class TvShowComponent implements OnInit {
         response => {
           this.loading = false;
           this.tv = response.body;
-          console.log(response.body);
         },
         error => {
           this.loading = false;

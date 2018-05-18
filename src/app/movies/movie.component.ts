@@ -28,7 +28,6 @@ export class MovieComponent implements OnInit {
         response => {
           this.loading = false;
           this.movie = response.body;
-          console.log(response.body);
         },
         error => {
           this.loading = false;

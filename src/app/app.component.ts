@@ -25,21 +25,27 @@ export class AppComponent implements OnInit {
       }
     );
 
+    this.authService.user.subscribe(
+      value => {
+        this.user = value;
+      }
+    );
+
     this.checkSession();
   }
 
+  // This should be moved mostly to the service
   checkSession() {
     if (this.authService.hasSession()) {
       this.authService.account().subscribe(
         response => {
           this.authService.loggedIn.next(true);
-          this.user = response.body;
+          this.authService.user.next(response.body);
         }, error => {
           // Request token prob expired
           this.error = error;
         }
       );
-      // Should add check about token expiration to reduce unnecessary 401 errors.
     } else if (this.authService.hasToken()) {
       this.authService.session().subscribe(
         response => {
@@ -47,7 +53,7 @@ export class AppComponent implements OnInit {
             this.authService.setSession(response.body.session_id);
             this.authService.account().subscribe(
               resp => {
-                this.user = resp.body;
+                this.authService.user.next(resp.body);
               }, error => {
                 this.error = error;
               }

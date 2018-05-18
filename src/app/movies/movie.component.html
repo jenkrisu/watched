@@ -21,10 +21,14 @@
       </h5>
       <h6 class="card-title"><strong>Rating:</strong> {{ movie.vote_average }}/10 ({{ movie.vote_count }} votes)</h6>
       <p class="card-text">
-        <a href="#"><i class="fas fa-heart"></i></a> Add to Favorites
+        <button type="button" class="btn btn-link" (click)="addToList('favorite', movie.id)">
+          <i class="fas fa-heart"></i>
+        </button> Add to Favorites
       </p>
       <p class="card-text">
-        <a href="#"><i class="fas fa-list-ul"></i></a> Add to Watchlist
+          <button type="button" class="btn btn-link" (click)="addToList('watchlist', movie.id)">
+            <i class="fas fa-list-ul"></i>
+          </button> Add to Watchlist
       </p>
       <p *ngIf="movie.overview" class="card-text">{{ movie.overview }}</p>
       <div class="row">

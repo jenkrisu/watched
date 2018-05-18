@@ -19,6 +19,7 @@ import { SearchService } from './search.service';
 import { AuthService } from './auth.service';
 
 import { CookieService } from 'ngx-cookie-service';
+import { ListService } from './list.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { CookieService } from 'ngx-cookie-service';
     TvShowsModule,
     AppRoutingModule
   ],
-  providers: [SearchService, AuthService, CookieService],
+  providers: [SearchService, AuthService, CookieService, ListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

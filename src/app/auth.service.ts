@@ -25,6 +25,7 @@ export interface Token {
 export class AuthService {
 
   loggedIn = new Subject<boolean>();
+  user = new Subject<User>();
 
   constructor(private httpClient: HttpClient,
     private cookieService: CookieService) { }

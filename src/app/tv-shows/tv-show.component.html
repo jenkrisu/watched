@@ -21,11 +21,15 @@
         </h5>
         <h6 class="card-title"><strong>Rating:</strong> {{ tv.vote_average }}/10 ({{ tv.vote_count }} votes)</h6>
         <p class="card-text">
-          <a href="#"><i class="fas fa-heart"></i></a> Add to Favorites
-        </p>
-        <p class="card-text">
-          <a href="#"><i class="fas fa-list-ul"></i></a> Add to Watchlist
-        </p>
+            <button type="button" class="btn btn-link" (click)="addToList('favorite', tv.id)">
+              <i class="fas fa-heart"></i>
+            </button> Add to Favorites
+          </p>
+          <p class="card-text">
+              <button type="button" class="btn btn-link" (click)="addToList('watchlist', tv.id)">
+                <i class="fas fa-list-ul"></i>
+              </button> Add to Watchlist
+          </p>
         <p *ngIf="tv.overview" class="card-text">{{ tv.overview }}</p>
         <div class="row">
           <div *ngIf="tv.poster_path" class="col-md-6 mb-2 align-items-center text-center">
